@@ -7,8 +7,8 @@ import (
 	"log"
 )
 
-const dbFile = "BlueBlocksDB.db" // the name of the BoltDB file
-const blocksBucket = "blocks"    // The name of the bucket to store blockchain blocks in BoltDB
+const dbFile = "database/BlueBlocksDB.db" // the name of the BoltDB file
+const blocksBucket = "blocks"             // The name of the bucket to store blockchain blocks in BoltDB
 
 func IntToHex(n int64) []byte {
 	hexString := fmt.Sprintf("%x", n)
