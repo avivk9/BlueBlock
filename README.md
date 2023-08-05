@@ -1,2 +1,3 @@
 # BlueBlock
-messing around with blockchains using go
+
+Messing around with blockchains using Go language!
