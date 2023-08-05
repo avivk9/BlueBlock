@@ -12,7 +12,7 @@ type Block struct {
 	Nonce         int
 }
 
-func newBlock(data string, prevBlockHash []byte) *Block {
+func NewBlock(data string, prevBlockHash []byte) *Block {
 	block := &Block{time.Now().Unix(), []byte(data), prevBlockHash, []byte{}, 0}
 
 	pow := NewProofOfWork(block)
@@ -22,4 +22,8 @@ func newBlock(data string, prevBlockHash []byte) *Block {
 	block.Nonce = nonce
 
 	return block
+}
+
+func NewGenesisBlock() *Block {
+	return NewBlock("Genesis Block", []byte{})
 }
