@@ -27,7 +27,7 @@ func (pow *ProofOfWork) prepareData(nonce int) []byte { // combining the increas
 	data := bytes.Join(
 		[][]byte{
 			pow.block.PrevBlockHash,
-			pow.block.Data,
+			pow.block.HashTransactions(),
 			IntToHex(pow.block.Timestamp),
 			IntToHex(int64(targetBits)),
 			IntToHex(int64(nonce)),
@@ -38,13 +38,25 @@ func (pow *ProofOfWork) prepareData(nonce int) []byte { // combining the increas
 	return data
 }
 
+func (b *Block) HashTransactions() []byte {
+	var txHashes [][]byte
+	var txHash [32]byte
+
+	for _, tx := range b.Transactions { // iterate all transactoins
+		txHashes = append(txHashes, tx.ID) // appends the ID of each transaction
+	}
+	txHash = sha256.Sum256(bytes.Join(txHashes, []byte{})) // sum all transactions tpgether
+
+	return txHash[:] // convert the array to slices
+}
+
 func (pow *ProofOfWork) Run() (int, []byte) {
 	var hashInt big.Int
 	var hash [32]byte
 	nonce := 0
 	maxNonce := math.MaxInt64
 
-	fmt.Printf("Mining the block containing \"%s\"\n", pow.block.Data)
+	fmt.Printf("Mining a new block")
 	for nonce < maxNonce {
 		data := pow.prepareData(nonce) // data prepared with nonce
 		hash = sha256.Sum256(data)     // get the hash

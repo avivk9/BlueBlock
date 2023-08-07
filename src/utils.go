@@ -9,6 +9,7 @@ import (
 
 const dbFile = "database/BlueBlocksDB.db" // the name of the BoltDB file
 const blocksBucket = "blocks"             // The name of the bucket to store blockchain blocks in BoltDB
+const genesisCoinbaseData = "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"
 
 func IntToHex(n int64) []byte {
 	hexString := fmt.Sprintf("%x", n)
