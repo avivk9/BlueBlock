@@ -2,7 +2,6 @@
 
 Messing around with blockchains using Go language!
 
-
 ### How To Run:
 Clone this repo using:
 ```bash
@@ -24,3 +23,6 @@ Printing the Blockchain:
 ```bash
 .\BlueBlocks.exe printchain
 ```
+
+
+<i>note: based on https://jeiwan.net/ Building Blockchain in Go tutorials</i>
